@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/index.css' %}">
+<div class="images">
+    <figure class="left-image">
+        <img src="{% static 'images/baked-hawaiian-sandwiches-2000x1500.jpg' %}" 
+        alt="Mediterranean Salad" >
+    </figure>
+</div>
+
+    
+
+<article class="general-info">
+    <h1 class="hours">Info</h1>
+    <h1 class="interior-caption">Semi-Formal Dining</h1>
+    <div class="hours-container">
+        
+        <ul class="hours-list">
+            <li class="desc"><p>
+                Experience a culinary journey at our café, 
+                where we serve a delightful array of salads, wraps, sandwiches, and irresistible desserts. Enjoy fresh and vibrant salads, 
+                flavorful wraps, and classic sandwiches made with premium ingredients. Indulge 
+                in our decadent desserts that will leave you craving for more. Join us for a 
+                satisfying and delicious dining experience.
+            </p></li>
+            <li class="hours-item"><b>Monday</b> - <b>Thursday</b>: 11:00 a.m - 4:00 p.m</li>
+            <li class="hours-item"><b>Friday</b>: 11:00 a.m - 4:00 p.m, 5:00 p.m - 8:30 p.m</li>
+            <li class="hours-item"><b>Saturday</b> - <b>Sunday</b>: Closed</li>
+            <li class="phone"><strong>Phone</strong>: 315-678-3456</li>
+            
+        </ul>
+
+    </div>
+    <figure class="interior">
+        <img src="{% static 'images/cafe119.jpg' %}" alt="interior">
+    </figure>
+    
+</article>
+
+<article class="special">
+    <h1 class="special-header">Daily Special</h1>
+        <p class="special-date">{{ date }}</p>
+        <p class="special-name">{{ special }}</p>
+        <p class="special-desc">{{ special.description }}</p>
+        <p class="special-price">${{ special.price }}</p>
+</article>
+
+<article class="menu">
+    <h1>Menu</h1>
+    <div class="appetizer">
+        <h2>Appetizers</h2>
+        <ul class="appetizers-list">
+            {% for item in items %}
+                {% if item.category == 'Appetizer' %}
+            <li class="appetizer">
+                <p class="price">${{ item.price }}</p>
+                <p><strong>{{ item.name }}:</strong></p>
+                <p>{{ item.description }}</p>
+            </li>
+                {% endif %}
+            {% endfor %}
+    </ul>
+    </div>
+    <div class="salads">
+        <h2>Salads</h2>
+        <ul class="salads-list">
+            {% for item in items %}
+                {% if item.category == 'Salad' %}
+                    <li class="salad">
+                        <p class="price">${{ item.price }}</p>
+                        <p><strong>{{ item.name }}:</strong></p>
+                        <p>{{ item.description }}</p>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+        </ul>
+    </div>
+    <div class="sandwiches">
+        <h2>Sandwiches and Wraps</h2>
+        <ul class="sandwiches-list">
+            {% for item in items %}
+                {% if item.category == 'Sandwich' %}
+                    <li class="sandwich">
+                        <p class="price">${{ item.price }}</p>
+                        <p><strong>{{ item.name }}:</strong></p>
+                        <p>{{ item.description }}</p>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+        </ul>
+    </div>
+</article>
+{% endblock %}
